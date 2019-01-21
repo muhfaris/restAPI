@@ -1,0 +1,9 @@
+[app]
+port=1717
+read_timeout=5
+write_timeout=5
+
+[database]
+name=""
+host="127.0.0.1"
+port=27017
