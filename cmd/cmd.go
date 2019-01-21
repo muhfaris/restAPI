@@ -45,6 +45,7 @@ var rootCmd = &cobra.Command{
 		apiRouter.Handle("/articles", router.HandlerFunc(router.HandlerArticleCreate)).Methods(http.MethodPost)
 		apiRouter.Handle("/articles/{id}", router.HandlerFunc(router.HandlerArticleDetail)).Methods(http.MethodGet)
 		apiRouter.Handle("/articles/{id}", router.HandlerFunc(router.HandlerArticleUpdate)).Methods(http.MethodPut)
+		apiRouter.Handle("/articles/{id}", router.HandlerFunc(router.HandlerArticleDelete)).Methods(http.MethodDelete)
 
 		http.ListenAndServe(fmt.Sprintf(":%d", port), r)
 

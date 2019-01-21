@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/globalsign/mgo/bson"
 	"github.com/gorilla/mux"
 	"github.com/pkg/errors"
 	"gitlab.com/muhfaris/restAPI/api"
@@ -45,7 +46,23 @@ func HandlerArticleUpdate(w http.ResponseWriter, r *http.Request) (interface{}, 
 	}
 
 	if err := article.Update(ctx, dbPool); err != nil {
-		return nil, api.NewError(errors.Wrap(err, "article/create"), "", http.StatusBadRequest)
+		return nil, api.NewError(errors.Wrap(err, "article/update"), "", http.StatusBadRequest)
+	}
+
+	return http.StatusNoContent, nil
+}
+
+func HandlerArticleDelete(w http.ResponseWriter, r *http.Request) (interface{}, *api.Error) {
+	ctx := r.Context()
+	params := mux.Vars(r)
+
+	article := model.ModelArticles{}
+	id := params["id"]
+
+	article.ID = bson.ObjectIdHex(id)
+
+	if err := article.Delete(ctx, dbPool); err != nil {
+		return nil, api.NewError(errors.Wrap(err, "article/delete"), "", http.StatusBadRequest)
 	}
 
 	return http.StatusNoContent, nil
@@ -63,9 +80,4 @@ func HandlerArticleCreate(w http.ResponseWriter, r *http.Request) (interface{}, 
 	}
 
 	return http.StatusCreated, nil
-}
-
-func HandlerArticleDelete(w http.ResponseWriter, r *http.Request) (interface{}, *api.Error) {
-
-	return nil, nil
 }

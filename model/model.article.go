@@ -124,3 +124,13 @@ func (m *ModelArticles) Update(ctx context.Context, db *mgo.Database) error {
 
 	return nil
 }
+
+func (m *ModelArticles) Delete(ctx context.Context, db *mgo.Database) error {
+	c := db.C(collection)
+
+	if err := c.RemoveId(m.ID); err != nil {
+		return errors.Wrap(err, "article/insert")
+	}
+
+	return nil
+}
