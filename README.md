@@ -1,6 +1,11 @@
 # restAPI
 Sample restAPI with mongoDB
 
+### Config
+- change `env` to `.env`
+- run docker-compose up (just database)
+- go run main.go
+
 ### Format
 
 | Action | Method  | URI   |
