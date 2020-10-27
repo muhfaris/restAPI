@@ -6,15 +6,16 @@ import (
 
 	"github.com/globalsign/mgo/bson"
 	"github.com/gorilla/mux"
+	"github.com/muhfaris/restAPI/api"
+	"github.com/muhfaris/restAPI/model"
 	"github.com/pkg/errors"
-	"gitlab.com/muhfaris/restAPI/api"
-	"gitlab.com/muhfaris/restAPI/model"
 )
 
 func HandlerArticleList(w http.ResponseWriter, r *http.Request) (interface{}, *api.Error) {
 	//	ctx := r.Context()
 	ctx := r.Context()
 	response, _ := model.GetAllArticle(ctx, dbPool)
+
 	return response, nil
 }
 

@@ -1,0 +1,4 @@
+# Domain Configuration
+DATABASE_MONGO_NAME=rest_db
+DATABASE_MONGO_USER=rest_db
+DATABASE_MONGO_PASSWORD=rest_db
