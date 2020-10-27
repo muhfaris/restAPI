@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/globalsign/mgo"
-	"gitlab.com/muhfaris/restAPI/internal/pkg/logging"
+	"github.com/muhfaris/restAPI/internal/pkg/logging"
 )
 
 var (

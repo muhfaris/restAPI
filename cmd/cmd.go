@@ -2,14 +2,15 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/muhfaris/restAPI/internal/pkg/logging"
+	"github.com/muhfaris/restAPI/router"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"gitlab.com/muhfaris/restAPI/internal/pkg/logging"
-	"gitlab.com/muhfaris/restAPI/router"
 
 	"github.com/globalsign/mgo"
 )
@@ -47,6 +48,7 @@ var rootCmd = &cobra.Command{
 		apiRouter.Handle("/articles/{id}", router.HandlerFunc(router.HandlerArticleUpdate)).Methods(http.MethodPut)
 		apiRouter.Handle("/articles/{id}", router.HandlerFunc(router.HandlerArticleDelete)).Methods(http.MethodDelete)
 
+		log.Println("Listen api at :", port)
 		http.ListenAndServe(fmt.Sprintf(":%d", port), r)
 
 		srv := &http.Server{
@@ -81,7 +83,7 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	} else {
 		//Search config with name ".name"
-		viper.SetConfigName(".config")
+		viper.SetConfigName("config")
 		viper.AddConfigPath("./config")
 		err := viper.ReadInConfig()
 		if err != nil {

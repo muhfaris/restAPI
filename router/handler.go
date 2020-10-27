@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"gitlab.com/muhfaris/restAPI/api"
+	"github.com/muhfaris/restAPI/api"
 )
 
 type (
